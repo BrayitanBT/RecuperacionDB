@@ -50,8 +50,12 @@ CREATE DATABASE DanielBrayan
     ON EnEsRa.Id_Rango = Rango_Edad.Id_Rango
     GROUP BY Estado
 
+    
+    
+
     /* Procedimiento */
-    CREATE PROCEDURE FilteredState ()
+    CREATE PROCEDURE FiltrarEstado(in Estado VARCHAR(20))
+
     SELECT Estado.Estado, Encuesta.Tipo_Encuesta, Rango_Edad.Rango_Edad, EnEsRA.Año, EnEsRa.Cantidad, EnEsRa.Fuente
     FROM EnEsRa
     INNER JOIN Estado 
@@ -60,8 +64,9 @@ CREATE DATABASE DanielBrayan
     ON EnEsRa.Id_Encuesta = Encuesta.Id_Encuesta
     INNER JOIN Rango_Edad
     ON EnEsRa.Id_Rango = Rango_Edad.Id_Rango
-    WHERE Estado = "Puerto Rico"
-    
-    
+    WHERE Estado.Estado = Estado;
 
-   
+    Call FiltrarEstado("California")
+ 
+    
+    

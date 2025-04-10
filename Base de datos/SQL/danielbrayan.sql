@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2025 a las 02:17:12
+-- Tiempo de generación: 10-04-2025 a las 05:00:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `FilteredState` ()   SELECT Estado.Estado, Encuesta.Tipo_Encuesta, Rango_Edad.Rango_Edad, EnEsRA.Año, EnEsRa.Cantidad, EnEsRa.Fuente
+CREATE DEFINER=`root`@`localhost` PROCEDURE `FiltrarEstado` (IN `Estado` VARCHAR(20))   SELECT Estado.Estado, Encuesta.Tipo_Encuesta, Rango_Edad.Rango_Edad, EnEsRA.Año, EnEsRa.Cantidad, EnEsRa.Fuente
     FROM EnEsRa
     INNER JOIN Estado 
     ON EnEsRa.Id_Estado = Estado.Id_Estado
@@ -33,7 +33,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `FilteredState` ()   SELECT Estado.E
     ON EnEsRa.Id_Encuesta = Encuesta.Id_Encuesta
     INNER JOIN Rango_Edad
     ON EnEsRa.Id_Rango = Rango_Edad.Id_Rango
-    WHERE Estado = "Puerto Rico"$$
+    WHERE Estado.Estado = Estado$$
 
 DELIMITER ;
 
